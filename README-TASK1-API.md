@@ -88,15 +88,7 @@ Compilation Errors: If errors occur despite having the JDK, perform a deep clean
 
 ### Verification Screenshots
 The following screenshots, located in the `img/task1` folder, confirm the successful execution of core endpoints (PUT /execute) and data persistence in MongoDB.
-#### Verification (Test 2: Execute)
-The successful execution of the task and return of the TaskExecution log:
 
-![Test 2 Execute Result](img/task1/execute_success.png) 
-
-#### Verification (Test 5: Security)
-Proof that the security validation correctly blocked the malicious command:
-
-![Test 5 Security Block](img/task1/security_block.png)
 
 ## Authors
 
