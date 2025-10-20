@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-app-deployment
+  labels:
+    app: task-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-app
+  template:
+    metadata:
+      labels:
+        app: task-app
+    spec:
+      serviceAccountName: task-app-sa
+      containers:
+      - name: task-app-container
+        image: task-manager-app:v1
+        # Image pull policy set to Never to force local image use
+        imagePullPolicy: Never 
+        ports:
+        - containerPort: 8080
+        env:
+    # EXISTING MONGO URI
+        - name: SPRING_DATA_MONGODB_URI
+          value: mongodb://root:mysecretpassword@mongo-release-mongodb:27017/taskdb?authSource=admin
+
+    # ADDED K8S CLIENT CONFIGURATION (The fix for silent API failure):
+        - name: KUBERNETES_MASTER
+          value: https://10.96.0.1:443 # The standard K8s ClusterIP endpoint
+        - name: KUBERNETES_TRUST_CERTIFICATES
+          value: "true" # Required for Fabric8 client on Minikube

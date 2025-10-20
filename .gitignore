@@ -1,0 +1,13 @@
+/target/
+
+# Eclipse/IDE
+.classpath
+.project
+.settings/
+*.launch
+*.log
+
+# Misc
+*.zip
+*.jar
+!/.mvn/wrapper/maven-wrapper.jar
